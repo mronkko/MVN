@@ -217,7 +217,7 @@ dh <- function (data){
   C <- V %*% sigma %*% V
   L <- diag((eigen(C)$values)^-0.5)
   H <- eigen(C)$vectors
-  yi <- H %*% L %*% t(H) %*% V %*% t(data - sapply(data, mean))
+  yi <- H %*% L %*% t(H) %*% V %*% (t(data) - sapply(data, mean))
   B1 <- apply(yi, 1, function(x) {
     skewness(x)
   })
